@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Paper,
   makeStyles,
@@ -8,11 +8,15 @@ import {
   Typography,
   Button,
 } from "@material-ui/core";
+import Slider from "../Ui/Slider/Slider";
+import Slide from "../Ui/Slider/Slide";
+import Step1 from "./Step1";
+import Step2 from "./Step2";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     signupContainer: {
-      width: "auto",
+      width: 554,
       margin: "auto",
       display: "flex",
       alignItems: "center",
@@ -21,6 +25,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     signUp: {
       display: "flex",
+      flexDirection: "column",
       padding: "16px 32px",
     },
     form: {
@@ -28,28 +33,46 @@ const useStyles = makeStyles((theme: Theme) =>
       flexDirection: "column",
 
       "& > *": {
-        margin: theme.spacing(1),
+        width: "33ch",
+        margin: theme.spacing(1) + "px 0",
       },
     },
+    navigationButton: {
+      width: 100,
+      margin: 8,
+    },
+    submitButton: { width: 100 },
   })
 );
 
 export default () => {
   const classes = useStyles();
+  const [step, setStep] = useState(0);
 
   return (
     <div className={classes.signupContainer}>
-      <Paper variant="outlined" className={classes.signUp}>
-        <form className={classes.form} noValidate autoComplete="off">
-          <Typography variant="h4">Signup</Typography>
-          <TextField id="outlined-basic" label="Name" variant="outlined" />
-          <TextField id="outlined-basic" label="Email" variant="outlined" />
-          <TextField id="outlined-basic" label="Password" variant="outlined" />
-          <Button variant="outlined" size="medium" color="primary">
-            Submit
-          </Button>
-        </form>
-      </Paper>
+      <Button
+        variant="outlined"
+        size="medium"
+        color="primary"
+        className={classes.navigationButton}
+        onClick={() => setStep(step - 1)}
+      >
+        Back
+      </Button>
+      <Slider currentSlide={step}>
+        <Step1></Step1>
+        <Step2></Step2>
+      </Slider>
+      <Button
+        variant="contained"
+        size="medium"
+        color="primary"
+        className={classes.navigationButton}
+        onClick={() => setStep(step + 1)}
+      >
+        Next
+      </Button>
     </div>
   );
 };

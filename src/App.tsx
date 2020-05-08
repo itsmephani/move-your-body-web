@@ -4,8 +4,25 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-import { makeStyles, createStyles, Theme } from "@material-ui/core";
+import {
+  makeStyles,
+  createStyles,
+  Theme,
+  ThemeProvider,
+  createMuiTheme,
+} from "@material-ui/core";
+import blue from "@material-ui/core/colors/blue";
 import Signup from "./components/Signup/Signup";
+import Logo from "./components/Logo/Logo";
+
+const theme = createMuiTheme({
+  palette: {
+    primary: blue,
+  },
+  typography: {
+    fontFamily: "Lato",
+  },
+});
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -26,18 +43,20 @@ function App() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <AppBar color="primary" position="fixed">
-        <Toolbar>
-          <Typography variant="h6" className={classes.title}>
-            MYB
-          </Typography>
-          <Button color="inherit">Login</Button>
-        </Toolbar>
-      </AppBar>
-      <div className={classes.offset} />
-      <Signup></Signup>
-    </div>
+    <ThemeProvider theme={theme}>
+      <div className={classes.root}>
+        <AppBar color="primary" position="fixed">
+          <Toolbar>
+            <div className={classes.title}>
+              <Logo></Logo>
+            </div>
+            <Button color="inherit">Login</Button>
+          </Toolbar>
+        </AppBar>
+        <div className={classes.offset} />
+        <Signup></Signup>
+      </div>
+    </ThemeProvider>
   );
 }
 

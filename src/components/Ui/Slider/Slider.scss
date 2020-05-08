@@ -1,0 +1,13 @@
+.slider {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+
+  .slider__slides_container {
+    display: flex;
+    height: 100%;
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    width: 100%;
+  }
+}

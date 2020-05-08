@@ -42,3 +42,23 @@ code {
   font-family: Monaco, source-code-pro, Menlo, Consolas, "Courier New",
     monospace;
 }
+
+.flex {
+  display: flex;
+}
+
+.layoutColumn {
+  flex-direction: column;
+}
+
+.layoutRow {
+  flex-direction: row;
+}
+
+.alginCenter {
+  align-items: center;
+}
+
+.justifyCenter {
+  justify-content: center;
+}
