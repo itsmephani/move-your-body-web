@@ -9,7 +9,6 @@ import React, { useState, Props } from "react";
 import Slide from "../Ui/Slider/Slide";
 import "./Signup.scss";
 import { blue } from "@material-ui/core/colors";
-import classes from "*.module.css";
 import { SignupStepProps } from "./Signup";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -34,7 +33,7 @@ export default (props: Props<{}> & SignupStepProps) => {
             style={{
               height: 212,
               backgroundImage:
-                gender == "Male"
+                gender === "Male"
                   ? "url(/images/jogging.png)"
                   : "url(/images/meditation.png)",
             }}
@@ -44,7 +43,7 @@ export default (props: Props<{}> & SignupStepProps) => {
               role="button"
               onClick={() => setGender("Male")}
               className={
-                "genderSelection " + (gender == "Male" ? classes.selected : "")
+                "genderSelection " + (gender === "Male" ? classes.selected : "")
               }
               style={{ backgroundImage: "url(/images/jogging.png)" }}
             ></div>
@@ -53,7 +52,7 @@ export default (props: Props<{}> & SignupStepProps) => {
               onClick={() => setGender("FeMale")}
               className={
                 "genderSelection " +
-                (gender == "FeMale" ? classes.selected : "")
+                (gender === "FeMale" ? classes.selected : "")
               }
               style={{ backgroundImage: "url(/images/meditation.png)" }}
             ></div>

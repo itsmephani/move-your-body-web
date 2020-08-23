@@ -3,44 +3,41 @@ import React, { Props, useState } from "react";
 import {
   Paper,
   Typography,
-  TextField,
-  Button,
-  makeStyles,
-  Theme,
-  createStyles,
+  // makeStyles,
+  // Theme,
+  // createStyles,
 } from "@material-ui/core";
 import { SignupStepProps } from "./Signup";
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    signupContainer: {
-      width: 554,
-      margin: "auto",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      padding: 32,
-    },
-    form: {
-      display: "flex",
-      flexDirection: "column",
+// const useStyles = makeStyles((theme: Theme) =>
+//   createStyles({
+//     signupContainer: {
+//       width: 554,
+//       margin: "auto",
+//       display: "flex",
+//       alignItems: "center",
+//       justifyContent: "center",
+//       padding: 32,
+//     },
+//     form: {
+//       display: "flex",
+//       flexDirection: "column",
 
-      "& > *": {
-        width: "33ch",
-        margin: theme.spacing(1) + "px 0",
-      },
-    },
-    navigationButton: {
-      width: 100,
-      margin: 8,
-    },
-    submitButton: { width: 100 },
-  })
-);
+//       "& > *": {
+//         width: "33ch",
+//         margin: theme.spacing(1) + "px 0",
+//       },
+//     },
+//     navigationButton: {
+//       width: 100,
+//       margin: 8,
+//     },
+//     submitButton: { width: 100 },
+//   })
+// );
 
 export default (props: Props<{}> & SignupStepProps) => {
-  const classes = useStyles();
-  const [weight, setWeight] = useState(60);
+  const [weight] = useState(60);
 
   return (
     <Slide>

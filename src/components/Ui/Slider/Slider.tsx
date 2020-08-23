@@ -1,4 +1,4 @@
-import React, { useEffect, useState, PropsWithChildren, Props } from "react";
+import React, { useEffect, useState, PropsWithChildren } from "react";
 import "./Slider.scss";
 
 export type SliderProps = {

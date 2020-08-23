@@ -13,7 +13,6 @@ import {
 import blue from "@material-ui/core/colors/blue";
 import Signup from "./components/Signup/Signup";
 import Logo from "./components/Logo/Logo";
-import {get} from "./services/http";
 
 const theme = createMuiTheme({
   palette: {
@@ -44,8 +43,10 @@ function App() {
   const [userInfo, setUserInfo] = useState({});
 
   useEffect(() => {
-    const info = get('https://murmuring-falls-21273.herokuapp.com/api/info');
-    setUserInfo(info);
+    fetch('https://murmuring-falls-21273.herokuapp.com/api/info').then(async (res) => {
+      const info = await res.json();
+      setUserInfo(info);
+    });
   }, []);
 
   return (
