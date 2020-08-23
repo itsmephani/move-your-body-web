@@ -1,24 +1,27 @@
 import React, { useState } from "react";
 import {
-  Paper,
   makeStyles,
   Theme,
   createStyles,
-  TextField,
-  Typography,
   Button,
+  Icon,
 } from "@material-ui/core";
 import Slider from "../Ui/Slider/Slider";
-import Slide from "../Ui/Slider/Slide";
-import Step1 from "./Step1";
-import Step2 from "./Step2";
+import StepOne from "./StepOne";
+import StepTwo from "./StepTwo";
+import StepThree from "./StepThree";
+import StepFour from "./StepFour";
+import SignupService from "./SignupService";
+
+const singupService = new SignupService();
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     signupContainer: {
-      width: 554,
+      width: 444,
       margin: "auto",
       display: "flex",
+      flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
       padding: 32,
@@ -38,41 +41,66 @@ const useStyles = makeStyles((theme: Theme) =>
       },
     },
     navigationButton: {
-      width: 100,
-      margin: 8,
+      marginTop: 8,
     },
     submitButton: { width: 100 },
   })
 );
+export type SignupStepProps = {
+  data?: {};
+  dataUpdate: (data: any) => void;
+};
 
 export default () => {
   const classes = useStyles();
-  const [step, setStep] = useState(0);
+  const [user, setUser] = useState({});
+  const [currentStep, setCurrentStep] = useState(0);
+  const handleDataUpdate = async ({ step, data }: any) => {
+    setUser({ ...user, ...data });
+
+    if (step === 3) {
+      const response = await singupService.register(user);
+      console.log(response);
+    } else {
+      setCurrentStep(currentStep + 1);
+    }
+  };
 
   return (
     <div className={classes.signupContainer}>
-      <Button
-        variant="outlined"
-        size="medium"
-        color="primary"
-        className={classes.navigationButton}
-        onClick={() => setStep(step - 1)}
-      >
-        Back
-      </Button>
-      <Slider currentSlide={step}>
-        <Step1></Step1>
-        <Step2></Step2>
+      <Slider currentSlide={currentStep}>
+        <StepOne dataUpdate={handleDataUpdate}></StepOne>
+        <StepTwo dataUpdate={handleDataUpdate}></StepTwo>
+        <StepThree dataUpdate={handleDataUpdate}></StepThree>
+        <StepFour dataUpdate={handleDataUpdate}></StepFour>
       </Slider>
-      <Button
-        variant="contained"
-        size="medium"
-        color="primary"
-        className={classes.navigationButton}
-        onClick={() => setStep(step + 1)}
-      >
-        Next
-      </Button>
+      <div className="flex spaceBetween fullWidth">
+        {currentStep > 0 ? (
+          <Button
+            className={classes.navigationButton}
+            variant="outlined"
+            size="medium"
+            onClick={() => setCurrentStep(currentStep - 1)}
+          >
+            <Icon>arrow_back</Icon> Prev
+          </Button>
+        ) : (
+          <div className={classes.navigationButton}></div>
+        )}
+        {currentStep < 3 ? (
+          <Button
+            className={classes.navigationButton}
+            variant="outlined"
+            size="medium"
+            color="primary"
+            onClick={() => setCurrentStep(currentStep + 1)}
+          >
+            Next <Icon color="primary">arrow_forward</Icon>
+          </Button>
+        ) : (
+          <div className={classes.navigationButton}></div>
+        )}
+      </div>
     </div>
   );
 };

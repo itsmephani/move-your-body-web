@@ -1,5 +1,5 @@
 import Slide from "../Ui/Slider/Slide";
-import React from "react";
+import React, { Props } from "react";
 import {
   Paper,
   Typography,
@@ -9,6 +9,7 @@ import {
   Theme,
   createStyles,
 } from "@material-ui/core";
+import { SignupStepProps } from "./Signup";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -42,13 +43,13 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default () => {
+export default (props: Props<{}> & SignupStepProps) => {
   const classes = useStyles();
 
   return (
     <Slide>
       <Paper variant="outlined" className={classes.signUp}>
-        <Typography variant="h4">Signup</Typography>
+        <Typography variant="h4">Final step</Typography>
         <form className={classes.form} noValidate autoComplete="off">
           <TextField id="outlined-basic" label="Name" variant="outlined" />
           <TextField id="outlined-basic" label="Email" variant="outlined" />

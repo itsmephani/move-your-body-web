@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import {
   makeStyles,
@@ -14,6 +13,7 @@ import {
 import blue from "@material-ui/core/colors/blue";
 import Signup from "./components/Signup/Signup";
 import Logo from "./components/Logo/Logo";
+import {get} from "./services/http";
 
 const theme = createMuiTheme({
   palette: {
@@ -41,6 +41,12 @@ const useStyles = makeStyles((theme: Theme) =>
 
 function App() {
   const classes = useStyles();
+  const [userInfo, setUserInfo] = useState({});
+
+  useEffect(() => {
+    const info = get('https://murmuring-falls-21273.herokuapp.com/api/info');
+    setUserInfo(info);
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>
@@ -54,6 +60,7 @@ function App() {
           </Toolbar>
         </AppBar>
         <div className={classes.offset} />
+        {JSON.stringify(userInfo)}
         <Signup></Signup>
       </div>
     </ThemeProvider>

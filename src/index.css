@@ -38,13 +38,20 @@ body {
   width: 100%;
 }
 
-code {
-  font-family: Monaco, source-code-pro, Menlo, Consolas, "Courier New",
-    monospace;
+.fullWidth {
+  width: 100%;
 }
 
 .flex {
   display: flex;
+}
+
+.column {
+  flex: 1;
+}
+
+.fullWidth {
+  width: 100%;
 }
 
 .layoutColumn {
@@ -61,4 +68,8 @@ code {
 
 .justifyCenter {
   justify-content: center;
+}
+
+.spaceBetween {
+  justify-content: space-between;
 }
